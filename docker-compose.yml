@@ -1,17 +1,21 @@
-version: "3.4"
-
 services:
   ib-gateway:
     restart: always
     build:
-      context: ./latest
+      context: ./stable
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
     environment:
       TWS_USERID: ${TWS_USERID}
       TWS_PASSWORD: ${TWS_PASSWORD}
       TRADING_MODE: ${TRADING_MODE:-paper}
       READ_ONLY_API: ${READ_ONLY_API:-}
       VNC_SERVER_PASSWORD: ${VNC_SERVER_PASSWORD:-}
+      IB_AUTO_CLOSE_DOWN: ${IB_AUTO_CLOSE_DOWN:-yes}
+      CLOSE_DOWN_AT: ${CLOSE_DOWN_AT:-}
+      TZ: ${TZ:-America/Chicago}
     ports:
       - "127.0.0.1:4001:4001"
       - "127.0.0.1:4002:4002"
-      - "127.0.0.1:5900:5900"
+      - "0.0.0.0:5900:5900"
