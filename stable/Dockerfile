@@ -8,7 +8,7 @@
 
 FROM ubuntu:22.04 as setup
 
-ENV IB_GATEWAY_VERSION=10.37.1m
+ENV IB_GATEWAY_VERSION=10.45.1f
 ENV IB_GATEWAY_RELEASE_CHANNEL=stable
 ENV IBC_VERSION=3.23.0
 
@@ -50,7 +50,7 @@ COPY ./scripts /root/scripts
 
 FROM ubuntu:22.04
 
-ENV IB_GATEWAY_VERSION=10.37.1m
+ENV IB_GATEWAY_VERSION=10.45.1f
 
 ENV TZ=America/Chicago
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
@@ -81,7 +81,6 @@ ENV TWS_PATH /root/Jts
 ENV IBC_PATH /root/ibc
 ENV IBC_INI /root/ibc/config.ini
 ENV TWOFA_TIMEOUT_ACTION exit
-
 
 # Start run script
 CMD ["/root/scripts/run.sh"]
